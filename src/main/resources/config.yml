@@ -1,0 +1,8 @@
+# 耐えられる時間 (sec), Long
+time: 3
+
+# インベントリチェックのインターバル (ticks), Long
+period: 5
+
+# 与ダメージのゲタはかせ, Long
+offset: 0
