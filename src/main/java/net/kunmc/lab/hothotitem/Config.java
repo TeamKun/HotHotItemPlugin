@@ -5,7 +5,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 public class Config {
     private HotHotItem plugin;
     private int time = 3;
-    private int period = 10;
+    private int period = 20;
     private double damageOffset = 0;
 
     Config() {

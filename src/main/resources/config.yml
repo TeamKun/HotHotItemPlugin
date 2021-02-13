@@ -2,7 +2,7 @@
 time: 3
 
 # インベントリチェックのインターバル (ticks), int
-period: 5
+period: 20
 
 # 与ダメージのゲタはかせ, double
 offset: 0
