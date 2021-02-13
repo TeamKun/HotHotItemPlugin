@@ -31,7 +31,7 @@ public class CommandManager implements CommandExecutor, TabCompleter {
                     "/hotitem help : ヘルプ表示",
                     "/hotitem start : プラグインを有効化",
                     "/hotitem stop : プラグインを無効化",
-                    "/hotitem time < int > : 耐えられる時間 (sec)",
+                    "/hotitem time < double > : 耐えられる時間 (sec)",
                     "/hotitem period < int > : インベントリチェックのインターバル (ticks)",
                     "/hotitem offset < double > : 与ダメージのゲタはかせ",
                     "/hotitem loadconfig : コンフィグの読み出し（リロード）",
@@ -55,10 +55,10 @@ public class CommandManager implements CommandExecutor, TabCompleter {
             return true;
         }
 
-        // time <int>
+        // time <double>
         if (args.length == 2 && same(args[0], "time")) {
             try {
-                int value = Integer.parseInt(args[1]);
+                double value = Double.parseDouble(args[1]);
 
                 if (HotHotItem.plugin.config.setTime(value)) {
                     sender.sendMessage(String.format("%s\"time\" が %s に設定されました。", prefixAccept, args[1]));

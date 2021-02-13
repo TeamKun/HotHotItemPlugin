@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Task extends BukkitRunnable {
+    // item holding time (ticks)
     private Map<Player, Integer> count = new HashMap<>();
 
     private boolean hasItem(Player player) {
@@ -21,7 +22,7 @@ public class Task extends BukkitRunnable {
     public void run() {
         HotHotItem plugin = HotHotItem.plugin;
         int period = plugin.config.getPeriod();
-        int time = plugin.config.getTime();
+        double time = plugin.config.getTime();
 
         for (Player player : plugin.getServer().getOnlinePlayers()) {
             // player validations
@@ -31,7 +32,7 @@ public class Task extends BukkitRunnable {
 
             if (!count.containsKey(player)) count.put(player, 0);
 
-            // get holding time
+            // get holding time (ticks)
             int holdingTime = count.get(player);
 
             holdingTime = hasItem(player) ? holdingTime + period : 0;
@@ -39,7 +40,7 @@ public class Task extends BukkitRunnable {
             // if player has item(s) too long...
             if (holdingTime > time * 20) {
                 player.setFireTicks(period + 1);
-                holdingTime = time * 20; // prevent overflow
+                holdingTime = (int) (time * 20) + 1; // prevent overflow
             }
 
             count.put(player, holdingTime);

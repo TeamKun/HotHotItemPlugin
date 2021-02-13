@@ -4,7 +4,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 
 public class Config {
     private HotHotItem plugin;
-    private int time = 3;
+    private double time = 3;
     private int period = 20;
     private double damageOffset = 0;
 
@@ -29,7 +29,7 @@ public class Config {
         FileConfiguration config = plugin.getConfig();
 
         try {
-            setTime(config.getInt("time"));
+            setTime(config.getDouble("time"));
             setPeriod(config.getInt("period"));
             setDamageOffset(config.getDouble("offset"));
         } catch (Exception ignore) {
@@ -39,11 +39,11 @@ public class Config {
         return true;
     }
 
-    public int getTime() {
+    public double getTime() {
         return time;
     }
 
-    public boolean setTime(int time) {
+    public boolean setTime(double time) {
         if (time <= 0) return false;
 
         this.time = time;

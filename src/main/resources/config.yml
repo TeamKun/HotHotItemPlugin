@@ -1,4 +1,4 @@
-# 耐えられる時間 (sec), int
+# 耐えられる時間 (sec), double
 time: 3
 
 # インベントリチェックのインターバル (ticks), int
