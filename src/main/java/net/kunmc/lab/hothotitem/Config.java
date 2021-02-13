@@ -3,9 +3,9 @@ package net.kunmc.lab.hothotitem;
 import org.bukkit.configuration.file.FileConfiguration;
 
 public class Config {
-    private long time = 3;
-    private long period = 10;
-    private long damageOffset = 0;
+    private int time = 3;
+    private int period = 10;
+    private double damageOffset = 0;
 
     Config() {
         loadConfig(false);
@@ -27,9 +27,9 @@ public class Config {
         FileConfiguration config = plugin.getConfig();
 
         try {
-            setTime(config.getLong("time"));
-            setPeriod(config.getLong("period"));
-            setDamageOffset(config.getLong("offset"));
+            setTime(config.getInt("time"));
+            setPeriod(config.getInt("period"));
+            setDamageOffset(config.getDouble("offset"));
         } catch (Exception ignore) {
             return false;
         }
@@ -37,33 +37,33 @@ public class Config {
         return true;
     }
 
-    public long getTime() {
+    public int getTime() {
         return time;
     }
 
-    public boolean setTime(long time) {
+    public boolean setTime(int time) {
         if (time <= 0) return false;
 
         this.time = time;
         return true;
     }
 
-    public long getPeriod() {
+    public int getPeriod() {
         return period;
     }
 
-    public boolean setPeriod(long period) {
+    public boolean setPeriod(int period) {
         if (period <= 0) return false;
 
         this.period = period;
         return true;
     }
 
-    public long getDamageOffset() {
+    public double getDamageOffset() {
         return damageOffset;
     }
 
-    public boolean setDamageOffset(long damageOffset) {
+    public boolean setDamageOffset(double damageOffset) {
         if (damageOffset < 0) return false;
 
         this.damageOffset = damageOffset;

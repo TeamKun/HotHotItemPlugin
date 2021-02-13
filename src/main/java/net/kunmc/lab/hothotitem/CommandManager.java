@@ -31,9 +31,9 @@ public class CommandManager implements CommandExecutor, TabCompleter {
                     "/hotitem help : ヘルプ表示",
                     "/hotitem start : プラグインを有効化",
                     "/hotitem stop : プラグインを無効化",
-                    "/hotitem time < long > : 耐えられる時間 (sec)",
-                    "/hotitem period < long > : インベントリチェックのインターバル (ticks)",
-                    "/hotitem offset < long > : 与ダメージのゲタはかせ",
+                    "/hotitem time < int > : 耐えられる時間 (sec)",
+                    "/hotitem period < int > : インベントリチェックのインターバル (ticks)",
+                    "/hotitem offset < double > : 与ダメージのゲタはかせ",
                     "/hotitem loadconfig : コンフィグの読み出し（リロード）",
                     "-----------------------------------------------------",
             };
@@ -55,10 +55,10 @@ public class CommandManager implements CommandExecutor, TabCompleter {
             return true;
         }
 
-        // time <Long>
+        // time <int>
         if (args.length == 2 && same(args[0], "time")) {
             try {
-                Long value = Long.parseLong(args[1]);
+                int value = Integer.parseInt(args[1]);
 
                 if (HotHotItem.plugin.config.setTime(value)) {
                     sender.sendMessage(String.format("%s\"time\" が %s に設定されました。", prefixAccept, args[1]));
@@ -72,10 +72,10 @@ public class CommandManager implements CommandExecutor, TabCompleter {
             return false;
         }
 
-        // period <Long>
+        // period <int>
         if (args.length == 2 && same(args[0], "period")) {
             try {
-                Long value = Long.parseLong(args[1]);
+                int value = Integer.parseInt(args[1]);
 
                 if (HotHotItem.plugin.config.setPeriod(value)) {
                     sender.sendMessage(String.format("%s\"period\" が %s に設定されました。", prefixAccept, args[1]));
@@ -89,10 +89,10 @@ public class CommandManager implements CommandExecutor, TabCompleter {
             return false;
         }
 
-        // offset <Long>
+        // offset <double>
         if (args.length == 2 && same(args[0], "offset")) {
             try {
-                Long value = Long.parseLong(args[1]);
+                double value = Double.parseDouble(args[1]);
                 if (HotHotItem.plugin.config.setDamageOffset(value)) {
                     sender.sendMessage(String.format("%s\"offset\" が %s に設定されました。", prefixAccept, args[1]));
                     return true;

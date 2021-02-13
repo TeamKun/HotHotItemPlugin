@@ -1,8 +1,8 @@
-# 耐えられる時間 (sec), Long
+# 耐えられる時間 (sec), int
 time: 3
 
-# インベントリチェックのインターバル (ticks), Long
+# インベントリチェックのインターバル (ticks), int
 period: 5
 
-# 与ダメージのゲタはかせ, Long
+# 与ダメージのゲタはかせ, double
 offset: 0
