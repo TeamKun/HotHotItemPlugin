@@ -3,11 +3,13 @@ package net.kunmc.lab.hothotitem;
 import org.bukkit.configuration.file.FileConfiguration;
 
 public class Config {
+    private HotHotItem plugin;
     private int time = 3;
     private int period = 10;
     private double damageOffset = 0;
 
     Config() {
+        plugin = HotHotItem.plugin;
         loadConfig(false);
     }
 
@@ -56,6 +58,12 @@ public class Config {
         if (period <= 0) return false;
 
         this.period = period;
+
+        if(plugin.isRunning()){
+            plugin.stop();
+            plugin.start();
+        }
+
         return true;
     }
 
