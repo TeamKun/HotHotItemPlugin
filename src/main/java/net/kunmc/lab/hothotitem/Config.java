@@ -11,11 +11,11 @@ public class Config {
         loadConfig(false);
     }
 
-    public void loadConfig() {
-        loadConfig(true);
+    public boolean loadConfig() {
+        return loadConfig(true);
     }
 
-    public void loadConfig(boolean isReload) {
+    public boolean loadConfig(boolean isReload) {
         HotHotItem plugin = HotHotItem.plugin;
 
         plugin.saveDefaultConfig();
@@ -31,31 +31,42 @@ public class Config {
             setPeriod(config.getLong("period"));
             setDamageOffset(config.getLong("offset"));
         } catch (Exception ignore) {
-            // do nothing
+            return false;
         }
+
+        return true;
     }
 
     public long getTime() {
         return time;
     }
 
-    public void setTime(long time) {
-        if (time > 0) this.time = time;
+    public boolean setTime(long time) {
+        if (time <= 0) return false;
+
+        this.time = time;
+        return true;
     }
 
     public long getPeriod() {
         return period;
     }
 
-    public void setPeriod(long period) {
-        if (period > 0) this.period = period;
+    public boolean setPeriod(long period) {
+        if (period <= 0) return false;
+
+        this.period = period;
+        return true;
     }
 
     public long getDamageOffset() {
         return damageOffset;
     }
 
-    public void setDamageOffset(long damageOffset) {
-        if (damageOffset >= 0) this.damageOffset = damageOffset;
+    public boolean setDamageOffset(long damageOffset) {
+        if (damageOffset < 0) return false;
+
+        this.damageOffset = damageOffset;
+        return true;
     }
 }

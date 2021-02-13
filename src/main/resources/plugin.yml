@@ -5,3 +5,13 @@ api-version: 1.15
 authors: [ Nagatuki ]
 description: アイテム熱アツクラフト
 website: https://github.com/TeamKun/HotHotItemPlugin
+
+commands:
+  hotitem:
+    usage: Unknown command. Type "/hotitem help" for help.
+    description: Hot Hot Item Plugin
+    permission: hothotitem
+
+permissions:
+  hothotitem:
+    default: op
