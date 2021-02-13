@@ -59,7 +59,7 @@ public class Config {
 
         this.period = period;
 
-        if(plugin.isRunning()){
+        if (plugin.isRunning()) {
             plugin.stop();
             plugin.start();
         }

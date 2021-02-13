@@ -20,21 +20,21 @@ public final class HotHotItem extends JavaPlugin implements Listener {
     }
 
     @Override
-    public void onDisable(){
+    public void onDisable() {
         stop();
     }
 
-    public void start(){
-        if(running) return;
+    public void start() {
+        if (running) return;
 
         running = true;
         task = new Task().runTaskTimer(this, 0, config.getPeriod());
     }
 
-    public void stop(){
+    public void stop() {
         running = false;
 
-        if(task != null){
+        if (task != null) {
             task.cancel();
             task = null;
         }
