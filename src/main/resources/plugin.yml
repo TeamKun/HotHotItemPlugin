@@ -1,0 +1,7 @@
+name: HotHotItem
+version: ${project.version}
+main: net.kunmc.lab.hothotitem.HotHotItem
+api-version: 1.15
+authors: [ Nagatuki ]
+description: アイテム熱アツクラフト
+website: https://github.com/TeamKun/HotHotItemPlugin
