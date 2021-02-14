@@ -37,7 +37,7 @@
   
   <br/>
 
-- `time`, `damage`, `coefficient`, `period` はコマンドとconfig.ymlから変更できる。
+- `time`, `damage`, `coefficient` はコマンドとconfig.ymlから変更できる。
 
 ### コマンド一覧
 
