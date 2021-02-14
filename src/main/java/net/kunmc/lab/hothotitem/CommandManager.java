@@ -33,7 +33,8 @@ public class CommandManager implements CommandExecutor, TabCompleter {
                     "/hotitem stop : プラグインを無効化",
                     "/hotitem time < double > : 耐えられる時間 (sec)",
                     "/hotitem period < int > : インベントリチェックのインターバル (ticks)",
-                    "/hotitem offset < double > : 与ダメージのゲタはかせ",
+                    "/hotitem damage < double > : 与ダメージの基準値",
+                    "/hotitem coefficient < double > : アイテムが一個増えたときのダメージの増加率",
                     "/hotitem loadconfig : コンフィグの読み出し（リロード）",
                     "-----------------------------------------------------",
             };
@@ -89,12 +90,28 @@ public class CommandManager implements CommandExecutor, TabCompleter {
             return false;
         }
 
-        // offset <double>
-        if (args.length == 2 && same(args[0], "offset")) {
+        // damage <double>
+        if (args.length == 2 && same(args[0], "damage")) {
             try {
                 double value = Double.parseDouble(args[1]);
-                if (HotHotItem.plugin.config.setDamageOffset(value)) {
-                    sender.sendMessage(String.format("%s\"offset\" が %s に設定されました。", prefixAccept, args[1]));
+                if (HotHotItem.plugin.config.setDamage(value)) {
+                    sender.sendMessage(String.format("%s\"damage\" が %s に設定されました。", prefixAccept, args[1]));
+                    return true;
+                }
+            } catch (Exception ignore) {
+                // do nothing
+            }
+
+            sender.sendMessage(prefixReject + "不正な引数です。");
+            return false;
+        }
+
+        // coefficient <double>
+        if (args.length == 2 && same(args[0], "coefficient")) {
+            try {
+                double value = Double.parseDouble(args[1]);
+                if (HotHotItem.plugin.config.setCoefficient(value)) {
+                    sender.sendMessage(String.format("%s\"coefficient\" が %s に設定されました。", prefixAccept, args[1]));
                     return true;
                 }
             } catch (Exception ignore) {
@@ -120,7 +137,7 @@ public class CommandManager implements CommandExecutor, TabCompleter {
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
         if (args.length == 1) {
-            return Stream.of("help", "loadconfig", "start", "stop", "time", "period", "offset")
+            return Stream.of("help", "loadconfig", "start", "stop", "time", "period", "damage", "coefficient")
                     .filter(e -> e.startsWith(args[0]))
                     .collect(Collectors.toList());
         }
@@ -140,14 +157,21 @@ public class CommandManager implements CommandExecutor, TabCompleter {
             }
         }
 
-        // offset
-        if (args.length == 2 && same(args[0], "offset")) {
+        // damage
+        if (args.length == 2 && same(args[0], "damage")) {
             if (args[1].length() == 0) {
-                String suggestion = String.valueOf(HotHotItem.plugin.config.getDamageOffset());
+                String suggestion = String.valueOf(HotHotItem.plugin.config.getDamage());
                 return Collections.singletonList(suggestion);
             }
         }
 
+        // coefficient
+        if (args.length == 2 && same(args[0], "coefficient")) {
+            if (args[1].length() == 0) {
+                String suggestion = String.valueOf(HotHotItem.plugin.config.getCoefficient());
+                return Collections.singletonList(suggestion);
+            }
+        }
         return null;
     }
 }

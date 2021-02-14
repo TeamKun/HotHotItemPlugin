@@ -4,5 +4,8 @@ time: 3
 # インベントリチェックのインターバル (ticks), int
 period: 20
 
-# 与ダメージのゲタはかせ, double
-offset: 0
+# 与ダメージの基準値, double
+damage: 1.0
+
+# アイテムが1個増えたときのダメージの増加率, 係数, double
+coefficient: 0

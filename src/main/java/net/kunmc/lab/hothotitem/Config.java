@@ -6,7 +6,8 @@ public class Config {
     private HotHotItem plugin;
     private double time = 3;
     private int period = 20;
-    private double damageOffset = 0;
+    private double damage = 1.0;
+    private double coefficient = 0;
 
     Config() {
         plugin = HotHotItem.plugin;
@@ -31,7 +32,8 @@ public class Config {
         try {
             setTime(config.getDouble("time"));
             setPeriod(config.getInt("period"));
-            setDamageOffset(config.getDouble("offset"));
+            setDamage(config.getDouble("damage"));
+            setCoefficient(config.getDouble("coefficient"));
         } catch (Exception ignore) {
             return false;
         }
@@ -67,14 +69,25 @@ public class Config {
         return true;
     }
 
-    public double getDamageOffset() {
-        return damageOffset;
+    public double getDamage() {
+        return damage;
     }
 
-    public boolean setDamageOffset(double damageOffset) {
-        if (damageOffset < 0) return false;
+    public boolean setDamage(double damage) {
+        if (damage < 0) return false;
 
-        this.damageOffset = damageOffset;
+        this.damage = damage;
+        return true;
+    }
+
+    public double getCoefficient() {
+        return coefficient;
+    }
+
+    public boolean setCoefficient(double coefficient) {
+        if (coefficient < 0) return false;
+
+        this.coefficient = coefficient;
         return true;
     }
 }
