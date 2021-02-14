@@ -24,16 +24,16 @@
 - これに加え、` (持ってるアイテム数 - 1) * coefficient `だけ追加ダメージが加わる。
 
   <br/>
-
+  
   すなわち、最終的にプレイヤーに入るダメージは次の式で表される
-
+  
   <br/>
 <div align="center">
   <img src="https://latex.codecogs.com/png.latex?given\_damage=coefficient\times(count-1)&plus;damage" />
 </div>
   <br/>
 
-  ただしプレイヤーが持ってるアイテム数を `count` とする。
+　　ただしプレイヤーが持ってるアイテム数を `count` とする。
   
   <br/>
 
