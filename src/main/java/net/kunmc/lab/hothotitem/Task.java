@@ -43,6 +43,15 @@ public class Task extends BukkitRunnable {
         player.damage(damage);
     }
 
+    private void putHoldingTime(Player player, int value) {
+        holdingTimes.put(player, value);
+    }
+
+    private int getHoldingTime(Player player) {
+        if (!holdingTimes.containsKey(player)) return 0;
+        return holdingTimes.get(player);
+    }
+
     @Override
     public void run() {
         int period = config.getPeriod();
@@ -51,19 +60,17 @@ public class Task extends BukkitRunnable {
         for (Player player : plugin.getServer().getOnlinePlayers()) {
             if (!validatePlayer(player)) continue;
 
-            if (!holdingTimes.containsKey(player)) holdingTimes.put(player, 0);
-
             long count = countFilledSlots(player);
 
             if (count == 0) {
-                holdingTimes.put(player, 0);
+                putHoldingTime(player, 0);
                 continue;
             }
 
             // get holding time (ticks) and update
-            int holdingTime = holdingTimes.get(player) + period;
+            int holdingTime = getHoldingTime(player) + period;
             holdingTime = Math.min(holdingTime, (int) (time * 20) + 1); // prevent overflow
-            holdingTimes.put(player, holdingTime);
+            putHoldingTime(player, holdingTime);
 
             // if player is in the water, damage is decreased.
             if (isInWater(player)) --count;
